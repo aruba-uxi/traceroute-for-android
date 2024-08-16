@@ -71,16 +71,9 @@ object TraceRoute {
         }
     }
 
-    /**
-     * traceroute with hostname
-     *
-     * @param hostname traceroute's hostname
-     * @param async synchronous or asynchronous execution
-     * @return TraceRouteResult
-     */
     @Synchronized
-    fun traceRoute(hostname: String, async: Boolean = false): TraceRouteResult? {
-        val args = arrayOf("traceroute", hostname)
+    fun traceRoute(userArgs: Array<String>, async: Boolean = false): TraceRouteResult? {
+        val args = arrayOf("traceroute") + userArgs
         if (async) {
             Thread({
                 traceRoute(args)
